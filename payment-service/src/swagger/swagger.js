@@ -11,7 +11,12 @@ const options = {
         },
         servers: [
             {
+                url: 'http://localhost:8080',
+                description: 'API Gateway'
+            },
+            {
                 url: 'http://localhost:8084',
+                description: 'Payment Service (Direct)'
             },
         ],
     },
@@ -21,7 +26,10 @@ const options = {
 const specs = swaggerJsdoc(options);
 
 const swaggerDocs = (app) => {
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+    app.use('/api/payments/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+    app.get('/api/payments/swagger.json', (req, res) => {
+        res.json(specs);
+    });
 };
 
 module.exports = swaggerDocs;

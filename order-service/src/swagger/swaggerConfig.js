@@ -10,8 +10,12 @@ const options = {
     },
     servers: [
       {
+        url: 'http://localhost:8080',
+        description: 'API Gateway'
+      },
+      {
         url: 'http://localhost:8083',
-        description: 'Local development server',
+        description: 'Order Service (Direct)'
       },
     ],
   },

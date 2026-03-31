@@ -11,7 +11,12 @@ const options = {
     },
     servers: [
       {
+        url: 'http://localhost:8080',
+        description: 'API Gateway'
+      },
+      {
         url: 'http://localhost:8082',
+        description: 'Restaurant Service (Direct)'
       },
     ],
   },
@@ -21,5 +26,8 @@ const options = {
 const specs = swaggerJsDoc(options);
 
 module.exports = (app) => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+  app.use('/api/restaurants/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+  app.get('/api/restaurants/swagger.json', (req, res) => {
+    res.json(specs);
+  });
 };

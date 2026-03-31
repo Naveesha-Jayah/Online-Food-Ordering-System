@@ -15,7 +15,12 @@ const options = {
         },
         servers: [
             {
+                url: 'http://localhost:8080',
+                description: 'API Gateway'
+            },
+            {
                 url: 'http://localhost:8081',
+                description: 'User Service (Direct)'
             },
         ],
         components: {

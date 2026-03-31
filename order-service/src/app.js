@@ -19,8 +19,13 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Swagger Documentation (Must be before main routes to prevent ID conflict)
+app.use('/api/orders/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get('/api/orders/swagger.json', (req, res) => {
+  res.json(swaggerSpec);
+});
+
 app.use('/api/orders', orderRoutes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use((req, res) => {
   res.status(404).json({

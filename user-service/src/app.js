@@ -12,11 +12,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Swagger Documentation Route (Access through Gateway: http://localhost:8080/api/users/api-docs)
+app.use('/api/users/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get('/api/users/swagger.json', (req, res) => {
+    res.json(swaggerSpec);
+});
+
 // Main User Routes
 app.use('/api/users', userRoutes);
-
-// Swagger Documentation Route
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Simple Root Route
 app.get('/', (req, res) => {

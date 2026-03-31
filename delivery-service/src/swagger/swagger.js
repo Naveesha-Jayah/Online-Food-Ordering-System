@@ -11,12 +11,12 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:8085',
-        description: 'Delivery Service Local',
+        url: 'http://localhost:8080',
+        description: 'API Gateway'
       },
       {
-        url: 'http://localhost:8080',
-        description: 'API Gateway',
+        url: 'http://localhost:8085',
+        description: 'Delivery Service (Direct)'
       },
     ],
   },

@@ -9,11 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Swagger (Must be before main routes to prevent ID conflict)
+swaggerSetup(app);
+
 // Routes
 app.use('/api', restaurantRoutes);
-
-// Swagger
-swaggerSetup(app);
 
 // Error Middleware
 app.use(errorHandler);
